@@ -1,0 +1,87 @@
+{
+  "name": "devdock",
+  "productName": "DevDock",
+  "version": "0.2.0",
+  "description": "A small floating home for your development workflow.",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "author": "ActorF and DevDock contributors",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "electron .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:smoke": "node scripts/smoke.mjs",
+    "test:ui": "node scripts/ui-smoke.mjs",
+    "test:persistence": "node scripts/persistence-smoke.mjs",
+    "test:git-setup-ui": "node scripts/git-setup-ui-smoke.mjs",
+    "prepare:manual": "node scripts/prepare-manual.mjs --open",
+    "test:manual-preflight": "node scripts/manual-preflight.mjs",
+    "package": "npm run build && electron-builder --win portable --x64",
+    "package:dir": "npm run build && electron-builder --dir --win --x64"
+  },
+  "dependencies": {
+    "lucide-react": "latest",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3",
+    "esbuild": "latest",
+    "playwright": "1.64.1",
+    "sharp": "latest",
+    "typescript": "7.0.2",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  },
+  "build": {
+    "appId": "io.devdock.desktop",
+    "productName": "DevDock",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "assets/**/*",
+      "package.json",
+      "LICENSE"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "signExecutable": false
+    },
+    "portable": {
+      "artifactName": "DevDock-${version}-portable.exe"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ActorF/DevDock.git"
+  },
+  "homepage": "https://github.com/ActorF/DevDock#readme",
+  "bugs": {
+    "url": "https://github.com/ActorF/DevDock/issues"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-electron/
+release/
+artifacts/
+.devdock-test/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+coverage/
+*.tsbuildinfo
+Thumbs.db
